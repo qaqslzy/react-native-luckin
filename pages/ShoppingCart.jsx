@@ -5,6 +5,8 @@ import EmptyCart from '../components/EmptyCart'
 import { Text, Button, Icon } from '@ui-kitten/components';
 import { connect } from "react-redux";
 import CartModel from '../model/cart'
+import CoffeeImage from '../images/Images'
+
 
 const PlusIcon = (props) => (
     <Icon {...props} name='plus-circle' />
@@ -18,7 +20,9 @@ const MinusIcon = (props) => (
 function Item({ item, dispatch }) {
     return (
         <View style={styles.itemStyle}>
-            <View style={styles.goodsPic}></View>
+            <View style={styles.goodsPic}>
+                <Image style={{width:"100%", height:"100%"}} source={CoffeeImage[item.id]}></Image>
+            </View>
             <View style={{ marginLeft: 8 }}>
                 <Text style={{ fontSize: 16, fontWeight: "bold" }}>{item.title}</Text>
                 <Text style={{ fontSize: 13, }} appearance='hint'>{item.sort}</Text>
@@ -164,7 +168,8 @@ const styles = StyleSheet.create({
         width: 55,
         height: 55,
         borderRadius: 8,
-        backgroundColor: "#666"
+        backgroundColor: "#666",
+        overflow:"hidden"
     },
     cart: {
         width: "94%",

@@ -3,6 +3,8 @@ import { StyleSheet, Image, View, TouchableWithoutFeedback, ScrollView } from 'r
 import SwiperComponent from '../components/SwiperComponent.jsx'
 import { Text, Button, Icon } from '@ui-kitten/components';
 import { connect } from "react-redux";
+import CoffeeImage from '../images/Images'
+
 
 const BackIcon = (props) => (
     <Icon {...props} name='arrow-ios-back-outline' />
@@ -12,7 +14,9 @@ const Item = ({ item, navigation }) => {
     return (
         <TouchableWithoutFeedback onPress={() => { navigation.navigate('GoodsDetails', { info: item }) }}>
             <View style={{ flexDirection: "row", margin: 10, marginLeft: 15 }}>
-                <View style={{ height: 60, width: 60, backgroundColor: "#66ccff", borderRadius: 8 }}></View>
+                <View style={{ height: 60, width: 60, backgroundColor: "#66ccff", borderRadius: 8, overflow:"hidden" }}>
+                    <Image style={{width:"100%",height:"100%"}} source={CoffeeImage[item.id]}></Image>
+                </View>
                 <View style={{ marginLeft: 10 }}>
                     <Text style={{ fontSize: 17, fontWeight: "bold", marginBottom: 5, marginTop: 5 }}>{item.title}</Text>
                     <Text style={{ fontSize: 14, }} appearance='hint'>{item.sort}</Text>

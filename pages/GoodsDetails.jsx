@@ -5,7 +5,7 @@ import { Text, Button, Icon } from '@ui-kitten/components';
 import { connect } from "react-redux";
 import CollectionModel from '../model/collection'
 import CartModel from '../model/cart'
-
+import CoffeeImage from '../images/Images'
 const BackIcon = (props) => (
     <Icon {...props} name='arrow-ios-back-outline' />
 );
@@ -35,11 +35,12 @@ const GoodsDetails = ({ navigation, route, dispatch, collection }) => {
     const info = route.params.info
     const [goodsNum, setGoodsNum] = useState(1)
     const [isFavorite, setIsFavorite] = useState(collection.indexOf(info.id) !== -1)
-
+    console.log(info);
+    
     return (
         <View style={{ width: "100%", height: "100%" }}>
             <View style={{
-                width: 30, height: 30, borderRadius: 25, backgroundColor: "rgba(00,00,00,0.25)", position: "absolute", top: 40, left: 15, zIndex: 100,
+                width: 30, height: 30, borderRadius: 25, backgroundColor: "rgba(00,00,00,0.6)", position: "absolute", top: 40, left: 15, zIndex: 100,
                 justifyContent: "center", alignItems: "center"
             }}>
                 <TouchableWithoutFeedback onPress={async () => {
@@ -67,12 +68,14 @@ const GoodsDetails = ({ navigation, route, dispatch, collection }) => {
 
             </View>
             <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
-                <View style={{ width: 30, height: 30, borderRadius: 25, backgroundColor: "rgba(00,00,00,0.25)", position: "absolute", top: 40, right: 15, zIndex: 100, justifyContent: "center", alignItems: "center" }}>
+                <View style={{ width: 30, height: 30, borderRadius: 25, backgroundColor: "rgba(00,00,00,0.6)", position: "absolute", top: 40, right: 15, zIndex: 100, justifyContent: "center", alignItems: "center" }}>
                     <CloseIcon fill="#fff" style={{ width: 20, height: 20 }}></CloseIcon>
                 </View>
             </TouchableWithoutFeedback>
             <ScrollView showsVerticalScrollIndicator={false} style={{ width: "100%" }}>
-                <View style={{ width: "100%", backgroundColor: "#888", height: 300 }}></View>
+                <View style={{ width: "100%", backgroundColor: "#888", height: 300 }}>
+                    <Image style={{height:"100%", width:"100%"}} source={CoffeeImage[info.id]}></Image>
+                </View>
                 <View style={{ width: "94%", marginLeft: "3%", marginTop: 15, backgroundColor: "#fff", borderRadius: 8 }}>
                     <Text style={{ marginLeft: 15, marginTop: 10, fontSize: 18 }}>{info.title}</Text>
                     <Text appearance='hint' style={{ fontSize: 13, marginLeft: 15, marginTop: 3, marginBottom: 10, marginRight: 15 }}>
@@ -82,7 +85,7 @@ const GoodsDetails = ({ navigation, route, dispatch, collection }) => {
                 <View style={{ width: "94%", marginLeft: "3%", marginTop: 10, backgroundColor: "#fff", borderRadius: 8 }}>
                     <Text style={{ marginLeft: 15, marginTop: 10, fontSize: 16 }}>商品详情</Text>
                     <Text appearance='hint' style={{ fontSize: 13, marginLeft: 17, marginTop: 10, marginBottom: 15, marginRight: 15 }}>
-                        经典拿铁与焦糖风味融于一杯,炭烤香气自然醇厚,加入滑效布丁,入口层次丰富,是香浓悠长的法式风情。{'\n'}主要原材料:浓缩咖啡、纯牛奶、布丁、焦糖风味糖浆、搅打奶油(含香草风味糖浆)、焦糖调味酱。{'\n'}图片仅供参考,请以实物为准,建议取餐后尽快饮用。
+                        {info.details}
                     </Text>
                 </View>
                 <View style={{ height: 150 }}></View>

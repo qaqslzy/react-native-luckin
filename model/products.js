@@ -20,7 +20,8 @@ export default class Products extends BaseModel {
       title: { type: types.TEXT, not_null: true },
       price: { type: types.FLOAT, not_null: true },
       english: { type: types.TEXT, not_null: true },
-      sort: { type: types.TEXT, not_null: true }
+      sort: { type: types.TEXT, not_null: true },
+      details:{type: types.TEXT, not_null: true},
     }
   }
 }

@@ -4,6 +4,8 @@ import SwiperComponent from '../components/SwiperComponent.jsx'
 import { Text, Button, Icon } from '@ui-kitten/components';
 import { set } from 'react-native-reanimated';
 import { connect } from "react-redux";
+import CoffeeImage from '../images/Images'
+
 
 let scrollLock = false
 let timeout = null
@@ -81,7 +83,9 @@ function SectionItem({ item, navigation }) {
     return (
         <TouchableWithoutFeedback onPress={() => navigation.navigate('GoodsDetails', {info:item})}>
             <View style={styles.SectionItem}>
-                <View style={styles.goodsPic}></View>
+                <View style={styles.goodsPic}>
+                    <Image style={{width: "100%",height: "100%"}} source={CoffeeImage[item.id]}></Image>
+                </View>
                 <View>
                     <Text style={styles.goodsTitle}>{item.title}</Text>
                     <Text style={styles.goodsDetial}>{item.english}</Text>
@@ -128,7 +132,7 @@ const ShoppingList = ({navigation, products}) => {
                 source={require('../images/luckin.png')}
             />
             <View style={styles.Ad}>
-                <SwiperComponent showsPagination={false}></SwiperComponent>
+                <SwiperComponent showsPagination={false} type={2}></SwiperComponent>
             </View>
             <View style={styles.shop}>
                 <View style={{ flexDirection: "row" }}>
@@ -272,7 +276,8 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70,
         borderRadius: 8,
-        margin: 10
+        margin: 10,
+        overflow:"hidden"
     },
     goodsTitle: {
         marginTop: 8,

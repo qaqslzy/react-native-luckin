@@ -40,26 +40,30 @@ const productsData = [
     title: "法式布蕾拿铁",
     english: "French Caramel Pudding Latte",
     price: "20",
+    details:"经典拿铁与焦糖风味融于一杯,炭烤香气自然醇厚,加入滑效布丁,入口层次丰富,是香浓悠长的法式风情。\n主要原材料:浓缩咖啡、纯牛奶、布丁、焦糖风味糖浆、搅打奶油(含香草风味糖浆)、焦糖调味酱。\n图片仅供参考,请以实物为准,建议取餐后尽快饮用。",
     sort: "大/默认奶油/半糖/冰",
-  },
-  {
-    title: "香草风味瑞纳冰",
-    english: "Classic Vanilla Flavored Exfreezo",
-    price: "18",
-    sort: "大/默认奶油/冰",
-  },
-  {
-    title: "秦岛桃桃冰",
-    english: "Peach Rose Exfreezo",
-    price: "19",
-    sort: "大/默认奶油/冰",
   },
   {
     title: "陨石拿铁",
     english: "Brown Sugar BoBo Latte",
     price: "16.8",
+    details:"【探月50年主题推荐款】独特的黑糖风味拿铁,佐以香滑Q嫩的黑糖口味寒天晶球,创造出层次丰富的美妙口感,一起碰撞咖啡宇宙的无限可能。\n本产品不含任何陨石成分,请放心饮用,建议搅拌后饮用。\n主要原材料:浓缩啦啡、黑糖味寒天晶球、牛奶、黑糖调味糖浆、原味调味糖浆、可选择添加搅打奶油(含香草风味糖浆)\n本产品仅供冷饮,图片仅供参考,请以实物为准。寒天晶球切勿一口吞食,儿童禁食。",
     sort: "大/默认奶油/半糖/热",
-  }
+  },
+  {
+    title: "浮云朵朵瑞纳冰",
+    english: "Classic Vanilla Flavored Exfreezo",
+    price: "18",
+    details:"经典的香草风味瑞纳冰,纯牛奶的加入让口感更加柔和细最后点缀上甜蜜焦糖酱,倍感香甜冰爽。\n主要原料:纯牛奶、香草风味糖浆、焦糖风味糖酱、原味冰沙粉、冰块、稀奶油(含香草风味糖浆)。\n图片仅供参考,请以实物为准。建议送达后尽快饮用。到店饮用口感更佳",
+    sort: "大/默认奶油/冰",
+  },
+  {
+    title: "楽岛桃桃冰",
+    english: "Peach & Rose Exfreezo",
+    price: "18",
+    details:"【网易云音乐主题推荐款】蜜桃和玫瑰的灵感碰撞,清甜桃桃香气隐藏在玫瑰花香下,加上绵密细腻的沙冰 topping,桃香、花香和清甜奶油,仿佛音符在你的舌尖上开 party!\n主要原材料:桃汁饮料浓浆,玫瑰风味糖浆,冰块。\n图片仅供参考,请以实物为准。水果风味瑞纳冰会出现分层现象,建议送达后尽快饮用。",
+    sort: "大/默认奶油/冰",
+  },
 ]
 
 function TabScreen() {
@@ -126,7 +130,7 @@ const initDatabase = async () => {
 }
 
 export default function App() {
-  // Products.dropTable()
+  // ProductsModel.dropTable()
   initDatabase()
   // console.log(store.getState());
   return (

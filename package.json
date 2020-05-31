@@ -16,6 +16,7 @@
     "@ui-kitten/components": "^5.0.0",
     "@ui-kitten/eva-icons": "^5.0.0",
     "expo": "~37.0.3",
+    "expo-splash-screen": "^0.2.3",
     "expo-sqlite": "~8.1.0",
     "expo-sqlite-orm": "^1.5.4",
     "react": "~16.9.0",

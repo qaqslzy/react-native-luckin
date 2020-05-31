@@ -35,7 +35,7 @@ const GoodsDetails = ({ navigation, route, dispatch, collection }) => {
     const info = route.params.info
     const [goodsNum, setGoodsNum] = useState(1)
     const [isFavorite, setIsFavorite] = useState(collection.indexOf(info.id) !== -1)
-    console.log(info);
+    // console.log(info);
     
     return (
         <View style={{ width: "100%", height: "100%" }}>
@@ -74,7 +74,7 @@ const GoodsDetails = ({ navigation, route, dispatch, collection }) => {
             </TouchableWithoutFeedback>
             <ScrollView showsVerticalScrollIndicator={false} style={{ width: "100%" }}>
                 <View style={{ width: "100%", backgroundColor: "#888", height: 300 }}>
-                    <Image style={{height:"100%", width:"100%"}} source={CoffeeImage[info.id]}></Image>
+                    <Image style={{height:"100%", width:"100%"}} source={CoffeeImage[info.id]} ></Image>
                 </View>
                 <View style={{ width: "94%", marginLeft: "3%", marginTop: 15, backgroundColor: "#fff", borderRadius: 8 }}>
                     <Text style={{ marginLeft: 15, marginTop: 10, fontSize: 18 }}>{info.title}</Text>

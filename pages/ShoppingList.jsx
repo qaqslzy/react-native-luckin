@@ -5,7 +5,7 @@ import { Text, Button, Icon } from '@ui-kitten/components';
 import { set } from 'react-native-reanimated';
 import { connect } from "react-redux";
 import CoffeeImage from '../images/Images'
-
+import CartModel from '../model/cart'
 
 let scrollLock = false
 let timeout = null
@@ -68,8 +68,8 @@ const Item = ({ active, item, index, setActive, list }) => {
                 itemIndex: 0,
                 sectionIndex: item.active
             })
-            timeout = setTimeout(()=>{scrollLock = false}, 1000)
-            
+            timeout = setTimeout(() => { scrollLock = false }, 1000)
+
         }}>
             <View style={itemStyle}>
                 <View style={bubble}></View>
@@ -79,34 +79,52 @@ const Item = ({ active, item, index, setActive, list }) => {
     );
 }
 
-function SectionItem({ item, navigation }) {
+function SectionItem({ item, navigation, dispatch }) {
     return (
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('GoodsDetails', {info:item})}>
-            <View style={styles.SectionItem}>
-                <View style={styles.goodsPic}>
-                    <Image style={{width: "100%",height: "100%"}} source={CoffeeImage[item.id]}></Image>
+        <View style={styles.SectionItem}>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate('GoodsDetails', { info: item })}>
+                <View style={{ flexDirection: "row" }}>
+                    <View style={styles.goodsPic}>
+                        <Image style={{ width: "100%", height: "100%" }} source={CoffeeImage[item.id]}></Image>
+                    </View>
+                    <View>
+                        <Text style={styles.goodsTitle}>{item.title}</Text>
+                        <Text style={styles.goodsDetial}>{item.english}</Text>
+                        <Text style={styles.goodsDetial}>{item.sort}</Text>
+                        <Text style={styles.goodsPrice}>¥{item.price}</Text>
+                    </View>
                 </View>
-                <View>
-                    <Text style={styles.goodsTitle}>{item.title}</Text>
-                    <Text style={styles.goodsDetial}>{item.english}</Text>
-                    <Text style={styles.goodsDetial}>{item.sort}</Text>
-                    <Text style={styles.goodsPrice}>¥{item.price}</Text>
-                </View>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={async () => {
+                let co = await CartModel.findBy({ productsId_eq: item.id })
+                if (co != null) {
+                    co.num += 1
+                    await co.save()
+                } else {
+                    const props = {
+                        productsId: item.id,
+                        num: 1
+                    }
+                    co = new CartModel(props)
+                    await co.save()
+                }
+                dispatch({ type: "ADD_TO_CART", productId: item.id, productNum: 1 })
+            }}>
                 <View style={styles.goodsAdd}>
                     <PlusIcon fill="#657BC6" style={{ width: 20, height: 20 }}></PlusIcon>
                 </View>
-            </View>
-        </TouchableWithoutFeedback>
+            </TouchableWithoutFeedback>
+        </View>
     );
 }
 
-const ShoppingList = ({navigation, products}) => {
+const ShoppingList = ({ navigation, products, dispatch }) => {
 
-    console.log(Object.values(products));
-    
+    // console.log(Object.values(products));
+
     let GoodsList = DATA2
 
-    for (let i = 0;i<GoodsList.length;i++)
+    for (let i = 0; i < GoodsList.length; i++)
         GoodsList[i]["data"] = Object.values(products)
 
     const VIEWABILITY_CONFIG = {
@@ -124,7 +142,7 @@ const ShoppingList = ({navigation, products}) => {
             setActive(obj.viewableItems[0].section.active)
     }
 
-    
+
     return (
         <View style={styles.body}>
             <Image
@@ -163,7 +181,7 @@ const ShoppingList = ({navigation, products}) => {
                         viewabilityConfig={VIEWABILITY_CONFIG}
                         onViewableItemsChanged={onViewChange}
                         keyExtractor={(item, index) => item + index}
-                        renderItem={({ item }) => <SectionItem item={item} navigation={navigation} />}
+                        renderItem={({ item }) => <SectionItem item={item} navigation={navigation} dispatch={dispatch}/>}
                         renderSectionHeader={({ section: { title } }) => (
                             <Text style={styles.header}>{title}</Text>
                         )}
@@ -234,7 +252,7 @@ const styles = StyleSheet.create({
     },
     item: {
         width: 100,
-        height:18,
+        height: 18,
         marginTop: 15,
         marginBottom: 15,
     },
@@ -261,8 +279,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         // marginBottom: 3,
         // marginTop: 3,
-        paddingTop:3,
-        paddingBottom:3,
+        paddingTop: 3,
+        paddingBottom: 3,
         backgroundColor: "#fff",
 
     },
@@ -277,7 +295,7 @@ const styles = StyleSheet.create({
         height: 70,
         borderRadius: 8,
         margin: 10,
-        overflow:"hidden"
+        overflow: "hidden"
     },
     goodsTitle: {
         marginTop: 8,

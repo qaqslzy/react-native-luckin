@@ -1,4 +1,4 @@
-import React,  { useCallback, useState } from 'react';
+import React,  { useCallback, useState, useEffect } from 'react';
 import * as eva from '@eva-design/eva';
 import { IconRegistry, ApplicationProvider, Text } from '@ui-kitten/components';
 import { StyleSheet, Image, View, SafeAreaView, SectionList, Alert } from 'react-native';
@@ -24,6 +24,7 @@ import DatabaseLayer from 'expo-sqlite-orm/src/DatabaseLayer'
 import ProductsModel from './model/products'
 import CollectionModel from './model/collection'
 import CartModel from './model/cart'
+
 
 
 YellowBox.ignoreWarnings([
@@ -129,7 +130,8 @@ const initDatabase = async () => {
 
 }
 
-export default function App() {
+const App = () => {
+
   // ProductsModel.dropTable()
   initDatabase()
   // console.log(store.getState());
@@ -151,3 +153,4 @@ export default function App() {
   );
 }
 
+export default App

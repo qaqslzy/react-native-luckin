@@ -60,7 +60,7 @@ const ShoppingCart = ({ dispatch, cart, products, navigation }) => {
 
     let cartData = []
     let sum = 0
-    console.log(cart);
+    // console.log(cart);
 
     for (let i in cart.addedIds) {
         id = cart.addedIds[i]

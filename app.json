@@ -3,17 +3,19 @@
     "name": "Starbugs",
     "slug": "starbugs",
     "platforms": [
-      "ios",
-      "android",
-      "web"
+      "android"
     ],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/star2.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "sdkVersion": "37.0.0",
+    "android": {
+      "package": "bjfu.it.liuzhongyu.starbugs"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

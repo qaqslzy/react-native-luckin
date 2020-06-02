@@ -39,9 +39,7 @@ yarn start
 
 ## 界面预览
 
-![5151590911113_.pic](README.assets/5151590911113_.pic.jpg)
-
-![5161590911479_.pic](README.assets/5201590917070_.pic.jpg)![5211590917553_.pic](README.assets/5221590917891_.pic.jpg)
+![small](README.assets/small-1119880.gif)
 
 ## PS
 
